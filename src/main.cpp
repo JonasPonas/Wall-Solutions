@@ -29,8 +29,6 @@ int find_difficult_x();
 void send_result(int res);
 void add_num_simb(int num, char simb, eaq_numbers &list);
 
-void next_equation();
-
 void on_rx_interrupt();
 void use_data();
 
@@ -355,20 +353,4 @@ int find_difficult_x()
     all_nums.x = (-1 * c) / b; // This is not a quadratic equation
 
   return all_nums.x;
-}
-
-void next_equation()
-{
-  finished++;
-
-  //i = 0;
-  /*buf[50] = {0};
-  ready = true;
-  x_amount = 0;
-  memset(&all_nums, 0, sizeof(all_nums));
-  printf("All_nums.x: %d\n", all_nums.x); */
-  //printf("All_nums.x: %d\n", all_nums.x);
-
-  serial_port.attach(&on_rx_interrupt, SerialBase::RxIrq); // reattach interrupt
-  //queue->cancel(curr_queue);
 }
