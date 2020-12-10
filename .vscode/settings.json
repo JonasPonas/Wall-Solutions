@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cmath": "cpp",
+        "random": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp"
+    }
+}
