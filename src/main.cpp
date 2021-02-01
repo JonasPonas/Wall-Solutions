@@ -3,7 +3,7 @@
 #include "char_search.h"
 
 #define MAXIMUM_BUFFER_SIZE
-#define VERBOSE false
+#define VERBOSE true
 
 eaq_numbers all_nums;
 
@@ -16,6 +16,7 @@ char buf[30];
 bool newLine = false;
 bool ready = true;
 int x_amount = 0;
+
 int finished = 0;
 
 int curr_queue;
@@ -38,7 +39,7 @@ void use_data()
   //wait_us(100);
   printf("First Line: %.*s\n", i, buf);
 
-  char input[30];                   // i-2
+  char input[30];                      // i-2
   memcpy(input, buf, strlen(buf) - 2); // Copy first line without "=0"
   input[strlen(buf) - 3] = '\0';       // Give string terminating symbol
 
@@ -108,6 +109,7 @@ void use_data()
     i = 0;
     x_amount = 0;
     ready = true;
+    memset(&buf, 0, sizeof(buf));
     //printf("Reattaching interrupt! Finished: %d\n", finished);
     serial_port.attach(&on_rx_interrupt, SerialBase::RxIrq); // reattach interrupt
     //return;
@@ -228,9 +230,12 @@ int x_modif_number(char *part, bool left)
   }
   else // We are on the right part of 'x'
   {
+    printf("We are on the right part of 'x' First char: %c\n", part[1]);
+
     if (is_char_symbol(part[0])) // Begining with symbol
     {
       simb = part[0];
+      printf("RightPart symbol is: %c\n", simb);
 
       for (int i = 1; i <= str_len; i++)
       {
